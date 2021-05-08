@@ -8,16 +8,54 @@ using SharpDX;
 
 namespace SimpleTrade
 {
+
+
     class SimpleTrade : BaseSettingsPlugin<SimpleTradeSettings>
     {
 
+        private InviteElement GetInviteElement(Element element)
+        {
+            string accountName = null;
+            InviteType inviteType = InviteType.Unknown;
+            Element acceptButton = null;
 
+            if (element.Children.Count == 3)
+            {
+                Element inviteTitlePanel = element.Children[0];
+                Element inviteButtonsPanel = element.Children[2];
+
+                if (inviteTitlePanel.Children.Count == 2)
+                {
+                    Element accountElement = inviteTitlePanel.Children[0];
+                    Element inviteTextElement = inviteTitlePanel.Children[1];
+
+                    if (accountElement.Children.Count == 2)
+                    {
+                        Element accountNameElement = accountElement.Children[1];
+
+                        accountName = accountNameElement.Text;
+                    }
+
+                    if (inviteTextElement?.Text != null)
+                    {
+                        if (inviteTextElement.Text.Contains("party"))
+                        {
+                            inviteType = InviteType.Party;
+                        }
+                        else if (inviteTextElement.Text.Contains("trade"))
+                        {
+                            inviteType = InviteType.Trade;
+                        }
+                    }
+                }
+            }
+
+            return new InviteElement(accountName, inviteType, acceptButton);
+        }
 
         public override void Render()
         {
-            Color highlight = Color.FromRgba(0x22FFFFFF);
-
-            Graphics.DrawText("Simple Trade is working", new SharpDX.Vector2(100, 100));
+            Graphics.DrawText("Simple Trade is working", new Vector2(100, 100));
             Graphics.DrawText($"Invites Panel is visible: {GameController.IngameState.IngameUi.InvitesPanel.IsVisible}", new Vector2(100, 120));
             Graphics.DrawText($"Trade Window is visible: {GameController.IngameState.IngameUi.TradeWindow.IsVisible}", new Vector2(100, 140));
 
@@ -40,54 +78,11 @@ namespace SimpleTrade
                         Element invitePlayerPanel = inviteElement.Children[1];
                         Element inviteButtonsPanel = inviteElement.Children[2];
 
+                        Graphics.DrawText($"inviteButtonsPanel children count: {inviteButtonsPanel.Children.Count}", new Vector2(100, 200));
+
                         //Graphics.DrawBox(inviteTitlePanel.GetClientRect(), Color.FromRgba(0x220000FF));
                         //Graphics.DrawBox(inviteElement.Children[1].GetClientRect(), Color.FromRgba(0x2200FF00));
                         //Graphics.DrawBox(inviteElement.Children[2].GetClientRect(), Color.FromRgba(0x22FF0000));
-
-
-
-                        if (inviteTitlePanel.Children.Count == 2)
-                        {
-                            Element accountElement = inviteTitlePanel.Children[0];
-                            Element inviteTextElement = inviteTitlePanel.Children[1];
-
-                            if (accountElement.Children.Count == 2)
-                            {
-                                Element accountNameElement = accountElement.Children[1];
-
-                                Graphics.DrawText($"Account name sent invite: {accountNameElement.Text}", new Vector2(100, 200));
-                                Graphics.DrawText($"Invite Text: {inviteTextElement.Text}", new Vector2(100, 220));
-                            }
-                        }
-
-                        if (invitePlayerPanel.Children.Count == 1)
-                        {
-                            Element invitePlayerWrapperPanel = invitePlayerPanel.Children[0];
-                            if (invitePlayerWrapperPanel.Children.Count == 1)
-                            {
-                                invitePlayerWrapperPanel = invitePlayerWrapperPanel.Children[0];
-
-                                if (invitePlayerWrapperPanel.Children.Count == 5)
-                                {
-                                    string childrenCounts = "";
-                                    string texts = "";
-                                    foreach (var e in invitePlayerWrapperPanel.Children)
-                                    {
-                                        childrenCounts += $"{e.Children.Count} ";
-                                        texts += $"{e.Text} ";
-                                    }
-                                    //Element invitePlayerNamePanel = invitePlayerWrapperPanel.Children[1];
-                                    Graphics.DrawText($"{childrenCounts}", new Vector2(100, 240));
-                                    Graphics.DrawText($"{texts}", new Vector2(100, 260));
-                                }
-                                
-                            }
-                                
-                        }
-                        
-
-                        //Graphics.DrawText($"text: {inviteTitlePanel.Children[0].Text}, long text: {inviteTitlePanel.Children[0].LongText}, child count: {inviteTitlePanel.Children[0].Children.Count}", new Vector2(100, 200));
-                        //Graphics.DrawText($"text: {inviteTitlePanel.Children[1].Text}, long text: {inviteTitlePanel.Children[1].LongText}, child count: {inviteTitlePanel.Children[1].Children.Count}", new Vector2(100, 220));
                     }
                 }
             }
