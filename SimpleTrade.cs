@@ -23,7 +23,12 @@ namespace SimpleTrade
                 Graphics.DrawText($"Trading with: {GameController.IngameState.IngameUi.TradeWindow.NameSeller}", new Vector2(100, 160));
             }
 
-            Graphics.DrawText($"UI Children count: {GameController.IngameState.IngameUi.Children.Count}", new Vector2(100, 180));
+            if (GameController.IngameState.IngameUi.InvitesPanel.IsVisible)
+            {
+                Graphics.DrawText($"Invites Panel children count: {GameController.IngameState.IngameUi.InvitesPanel.Children.Count}", new Vector2(100, 180));
+            }
+
+            /*Graphics.DrawText($"UI Children count: {GameController.IngameState.IngameUi.Children.Count}", new Vector2(100, 180));
 
 
             int i = 0;
@@ -55,7 +60,7 @@ namespace SimpleTrade
             if ((i - 1) % 20 != 0)
             {
                 Graphics.DrawText(result, new Vector2(100, 200 + row * 20));
-            }
+            }*/
         }
     }
 }
