@@ -33,49 +33,21 @@ namespace SimpleTrade
                 if (GameController.IngameState.IngameUi.InvitesPanel.Children.Count == 1)
                 {
                     Element inviteElement = GameController.IngameState.IngameUi.InvitesPanel.Children[0];
-                    Graphics.DrawText($"Invite children count: {inviteElement.Children.Count}", new Vector2(100, 200));
-                    Graphics.DrawText($"Invite text: {inviteElement.Text}", new Vector2(100, 220));
-                    Graphics.DrawText($"Invite long text: {inviteElement.LongText}", new Vector2(100, 240));
 
-                    Graphics.DrawBox(inviteElement.Children[0].GetClientRect(), Color.FromRgba(0x220000FF));
-                    Graphics.DrawBox(inviteElement.Children[1].GetClientRect(), Color.FromRgba(0x2200FF00));
-                    Graphics.DrawBox(inviteElement.Children[2].GetClientRect(), Color.FromRgba(0x22FF0000));
+                    if (inviteElement.Children.Count == 3)
+                    {
+                        Element inviteTitlePanel = inviteElement.Children[0];
+                        Element invitePlayerPanel = inviteElement.Children[1];
+                        Element inviteButtonsPanel = inviteElement.Children[2];
+
+                        //Graphics.DrawBox(inviteTitlePanel.GetClientRect(), Color.FromRgba(0x220000FF));
+                        //Graphics.DrawBox(inviteElement.Children[1].GetClientRect(), Color.FromRgba(0x2200FF00));
+                        //Graphics.DrawBox(inviteElement.Children[2].GetClientRect(), Color.FromRgba(0x22FF0000));
+
+                        Graphics.DrawText($"text: {inviteTitlePanel.Text}, long text: {inviteTitlePanel.LongText}, child count: {inviteTitlePanel.Children.Count}", new Vector2(100, 200));
+                    }
                 }
             }
-
-            /*Graphics.DrawText($"UI Children count: {GameController.IngameState.IngameUi.Children.Count}", new Vector2(100, 180));
-
-
-            int i = 0;
-            int row = 0;
-            string result = "";
-            string sign;
-            foreach (var c in GameController.IngameState.IngameUi.Children)
-            {
-                if (c.IsVisible)
-                {
-                    sign = "+";
-                }
-                else
-                {
-                    sign = "-";
-                }
-
-                result += $"{i}[{sign}] ";
-
-                if (i % 20 == 0 && i != 0)
-                {
-                    Graphics.DrawText(result, new Vector2(100, 200 + row * 20));
-                    result = "";
-                    row++;
-                }
-                i++;
-            }
-
-            if ((i - 1) % 20 != 0)
-            {
-                Graphics.DrawText(result, new Vector2(100, 200 + row * 20));
-            }*/
         }
     }
 }
