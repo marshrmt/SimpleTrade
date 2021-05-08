@@ -44,7 +44,8 @@ namespace SimpleTrade
                         //Graphics.DrawBox(inviteElement.Children[1].GetClientRect(), Color.FromRgba(0x2200FF00));
                         //Graphics.DrawBox(inviteElement.Children[2].GetClientRect(), Color.FromRgba(0x22FF0000));
 
-                        Graphics.DrawText($"text: {inviteTitlePanel.Text}, long text: {inviteTitlePanel.LongText}, child count: {inviteTitlePanel.Children.Count}", new Vector2(100, 200));
+                        Graphics.DrawText($"text: {inviteTitlePanel.Children[0].Text}, long text: {inviteTitlePanel.Children[0].LongText}, child count: {inviteTitlePanel.Children[0].Children.Count}", new Vector2(100, 200));
+                        Graphics.DrawText($"text: {inviteTitlePanel.Children[1].Text}, long text: {inviteTitlePanel.Children[1].LongText}, child count: {inviteTitlePanel.Children[1].Children.Count}", new Vector2(100, 220));
                     }
                 }
             }
