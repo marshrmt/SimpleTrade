@@ -2,15 +2,12 @@
 using System.Windows.Forms;
 using ExileCore;
 using ExileCore.PoEMemory;
-using ExileCore.PoEMemory.Elements;
-using ExileCore.PoEMemory.Components;
 using ExileCore.Shared.Enums;
 using SharpDX;
 using System.Threading;
 
 namespace SimpleTrade
 {
-
 
     class SimpleTrade : BaseSettingsPlugin<SimpleTradeSettings>
     {
