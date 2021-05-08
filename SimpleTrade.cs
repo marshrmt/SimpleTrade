@@ -60,7 +60,12 @@ namespace SimpleTrade
                             }
                         }
 
-                        Graphics.DrawText($"invitePlayerPanel child count: {invitePlayerPanel.Children.Count}", new Vector2(100, 240));
+                        if (invitePlayerPanel.Children.Count == 1)
+                        {
+                            Element invitePlayerWrapperPanel = invitePlayerPanel.Children[0];
+                            Graphics.DrawText($"invitePlayerPanel child count: {invitePlayerWrapperPanel.Children.Count}", new Vector2(100, 240));
+                        }
+                        
 
                         //Graphics.DrawText($"text: {inviteTitlePanel.Children[0].Text}, long text: {inviteTitlePanel.Children[0].LongText}, child count: {inviteTitlePanel.Children[0].Children.Count}", new Vector2(100, 200));
                         //Graphics.DrawText($"text: {inviteTitlePanel.Children[1].Text}, long text: {inviteTitlePanel.Children[1].LongText}, child count: {inviteTitlePanel.Children[1].Children.Count}", new Vector2(100, 220));
