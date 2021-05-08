@@ -121,7 +121,7 @@ namespace SimpleTrade
             }
             catch
             {
-                Input.KeyUp(System.Windows.Forms.Keys.Control);
+                Input.KeyUp(Keys.LControlKey);
                 IsRunning = false;
             }
         }
