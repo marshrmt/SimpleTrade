@@ -54,7 +54,7 @@ namespace SimpleTrade
                                 {
                                     Mouse.SetCursorPosition(_slotItem.GetClientRect());
                                     Thread.Sleep(random.Next(75) + 65);
-                                    Input.Click(MouseButtons.Left);
+                                    if (GameController.IngameState.IngameUi.TradeWindow.IsVisible) Input.Click(MouseButtons.Left);
                                     Thread.Sleep(random.Next(75) + 65);
                                 }
                                 else
@@ -96,12 +96,16 @@ namespace SimpleTrade
                             {
                                 Mouse.SetCursorPosAndLeftClickHuman(invite.acceptButtonClientRect, 200);
 
+                                Thread.Sleep(300);
+
                                 IsRunning = false;
                                 return;
                             }
                             else if (invite.inviteType == InviteType.Trade && invite.accountName == Settings.AcceptTradeFrom.Value)
                             {
                                 Mouse.SetCursorPosAndLeftClickHuman(invite.acceptButtonClientRect, 200);
+
+                                Thread.Sleep(300);
 
                                 IsRunning = false;
                                 return;
