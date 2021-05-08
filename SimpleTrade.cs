@@ -119,7 +119,7 @@ namespace SimpleTrade
                         lastInvitePosChange = DateTime.Now;
                     }
 
-                    if (lastInvitePosChange.AddMilliseconds(500) > DateTime.Now)
+                    if (lastInvitePosChange.AddMilliseconds(300) < DateTime.Now)
                     {
                         int i = 0;
                         foreach (var e in GameController.IngameState.IngameUi.InvitesPanel.Children)
