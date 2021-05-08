@@ -44,9 +44,9 @@ namespace SimpleTrade
 
                         if (_playerInventory != null)
                         {
-                            Input.KeyUp(Keys.ControlKey);
+                            Input.KeyUp(Keys.LControlKey);
                             Thread.Sleep(random.Next(75) + 65);
-                            Input.KeyDown(Keys.ControlKey);
+                            Input.KeyDown(Keys.LControlKey);
 
                             foreach (var _slotItem in _playerInventory.InventorySlotItems)
                             {
@@ -64,7 +64,7 @@ namespace SimpleTrade
                             }
 
                             Thread.Sleep(random.Next(75) + 65);
-                            Input.KeyUp(Keys.ControlKey);
+                            Input.KeyUp(Keys.LControlKey);
                         }
                     }
                 }
