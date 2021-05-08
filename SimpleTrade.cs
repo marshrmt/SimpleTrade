@@ -1,5 +1,6 @@
 ﻿using System;
 using ExileCore;
+using ExileCore.PoEMemory;
 using ExileCore.PoEMemory.Elements;
 using ExileCore.PoEMemory.Components;
 using ExileCore.Shared.Enums;
@@ -26,6 +27,14 @@ namespace SimpleTrade
             if (GameController.IngameState.IngameUi.InvitesPanel.IsVisible)
             {
                 Graphics.DrawText($"Invites Panel children count: {GameController.IngameState.IngameUi.InvitesPanel.Children.Count}", new Vector2(100, 180));
+
+                if (GameController.IngameState.IngameUi.InvitesPanel.Children.Count == 1)
+                {
+                    Element inviteElement = GameController.IngameState.IngameUi.InvitesPanel.Children[0];
+                    Graphics.DrawText($"Invite children count: {inviteElement.Children.Count}", new Vector2(100, 200));
+                    Graphics.DrawText($"Invite text: {inviteElement.Text}", new Vector2(100, 220));
+                    Graphics.DrawText($"Invite long text: {inviteElement.LongText}", new Vector2(100, 240));
+                }
             }
 
             /*Graphics.DrawText($"UI Children count: {GameController.IngameState.IngameUi.Children.Count}", new Vector2(100, 180));
