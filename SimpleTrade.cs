@@ -43,13 +43,18 @@ namespace SimpleTrade
 
                 result += $"{i}[{sign}] ";
 
-                if (i % 20 == 0)
+                if (i % 20 == 0 && i != 0)
                 {
                     Graphics.DrawText(result, new Vector2(100, 200 + row * 20));
                     result = "";
                     row++;
                 }
                 i++;
+            }
+
+            if ((i - 1) % 20 != 0)
+            {
+                Graphics.DrawText(result, new Vector2(100, 200 + row * 20));
             }
         }
     }
