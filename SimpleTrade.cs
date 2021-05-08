@@ -167,12 +167,14 @@ namespace SimpleTrade
         private InviteElement GetInviteElement(Element element)
         {
             string accountName = null;
+            string characterName = null;
             InviteType inviteType = InviteType.Unknown;
             RectangleF acceptButtonRect = new RectangleF();
 
             if (element.Children.Count == 3)
             {
                 Element inviteTitlePanel = element.Children[0];
+                Element characterInfoPanel = element.Children[1];
                 Element inviteButtonsPanel = element.Children[2];
 
                 if (inviteTitlePanel.Children.Count == 2)
@@ -198,6 +200,12 @@ namespace SimpleTrade
                             inviteType = InviteType.Trade;
                         }
                     }
+                }
+
+                if (characterInfoPanel.Children.Count == 5)
+                {
+                    characterName = characterInfoPanel.Children[0].Text;
+                    LogMessage($"char name: {characterName}");
                 }
 
                 if (inviteButtonsPanel.Children.Count == 2)

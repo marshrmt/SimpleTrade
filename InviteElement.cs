@@ -13,6 +13,7 @@ namespace SimpleTrade
     class InviteElement
     {
         public string accountName { get; private set; } = null;
+        public string characterName { get; private set; } = null;
         public InviteType inviteType { get; private set; } = InviteType.Unknown;
         public RectangleF acceptButtonClientRect { get; private set; } = new RectangleF();
 
