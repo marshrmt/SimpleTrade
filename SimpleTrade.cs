@@ -37,8 +37,9 @@ namespace SimpleTrade
                     Graphics.DrawText($"Invite text: {inviteElement.Text}", new Vector2(100, 220));
                     Graphics.DrawText($"Invite long text: {inviteElement.LongText}", new Vector2(100, 240));
 
-                    Graphics.DrawBox(inviteElement.Children[2].GetClientRect(), highlight);
-                    
+                    Graphics.DrawBox(inviteElement.Children[0].GetClientRect(), Color.FromRgba(0x220000FF));
+                    Graphics.DrawBox(inviteElement.Children[1].GetClientRect(), Color.FromRgba(0x2200FF00));
+                    Graphics.DrawBox(inviteElement.Children[2].GetClientRect(), Color.FromRgba(0x22FF0000));
                 }
             }
 
