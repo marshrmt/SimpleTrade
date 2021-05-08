@@ -21,6 +21,8 @@ namespace SimpleTrade
         private const int MovementDelay = 10;
         private const int ClickDelay = 1;
 
+        private static readonly Random rnd = new Random();
+
         [DllImport("user32.dll")]
         public static extern bool SetCursorPos(int x, int y);
 
@@ -190,7 +192,6 @@ namespace SimpleTrade
 
         public static void SetCursorPosAndLeftClickHuman(RectangleF rect, int extraDelay)
         {
-            Random rnd = new Random();
             float xBound = (rect.Right - rect.Left) * 0.3f;
             float yBound = (rect.Bottom - rect.Top) * 0.3f;
             float x = rnd.Next((int)(rect.Left + xBound), (int)(rect.Right - xBound));

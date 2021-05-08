@@ -5,6 +5,7 @@ using ExileCore.PoEMemory.Elements;
 using ExileCore.PoEMemory.Components;
 using ExileCore.Shared.Enums;
 using SharpDX;
+using System.Threading;
 
 namespace SimpleTrade
 {
@@ -15,9 +16,11 @@ namespace SimpleTrade
 
         private static bool IsRunning { get; set; } = false;
 
-        private static float prevInvitePos { get; set; } = 0;
+        private static float PrevInvitePos { get; set; } = 0;
 
-        private static DateTime lastInvitePosChange { get; set; } = DateTime.Now;
+        private static DateTime LastInvitePosChange { get; set; } = DateTime.Now;
+
+        private readonly Random random = new Random();
 
         public override Job Tick()
         {
@@ -34,7 +37,28 @@ namespace SimpleTrade
             {
                 if (GameController.IngameState.IngameUi.TradeWindow.IsVisible)
                 {
+                    if (GameController.IngameState.IngameUi.TradeWindow.NameSeller == Settings.AcceptTradeFrom.Value)
+                    {
+                        var _playerInventory = GameController.IngameState.ServerData.GetPlayerInventoryByType(InventoryTypeE.MainInventory);
 
+                        if (_playerInventory != null)
+                        {
+                            Input.KeyUp(System.Windows.Forms.Keys.Control);
+                            Thread.Sleep(random.Next(25) + 30);
+                            Input.KeyDown(System.Windows.Forms.Keys.Control);
+
+                            foreach (var _slotItem in _playerInventory.InventorySlotItems)
+                            {
+                                if (GameController.IngameState.IngameUi.TradeWindow.IsVisible)
+                                {
+                                    Mouse.SetCursorPosAndLeftClickHuman(_slotItem.GetClientRect(), random.Next(25) + 30);
+                                }
+                            }
+
+                            Thread.Sleep(random.Next(25) + 30);
+                            Input.KeyUp(System.Windows.Forms.Keys.Control);
+                        }
+                    }
                 }
                 else if (GameController.IngameState.IngameUi.InvitesPanel.IsVisible && GameController.IngameState.IngameUi.InvitesPanel.ChildCount > 0)
                 {
@@ -42,19 +66,19 @@ namespace SimpleTrade
                     {
                         if (e.Children.Count == 3)
                         {
-                            if (e.GetClientRect().Y != prevInvitePos)
+                            if (e.GetClientRect().Y != PrevInvitePos)
                             {
-                                lastInvitePosChange = DateTime.Now;
-                                prevInvitePos = e.GetClientRect().Y;
+                                LastInvitePosChange = DateTime.Now;
+                                PrevInvitePos = e.GetClientRect().Y;
                                 break;
                             }
 
-                            prevInvitePos = e.GetClientRect().Y;
+                            PrevInvitePos = e.GetClientRect().Y;
                         }
                     }
 
                     // Wait while invite panel scrolling up
-                    if (lastInvitePosChange.AddMilliseconds(300) < DateTime.Now)
+                    if (LastInvitePosChange.AddMilliseconds(300) < DateTime.Now)
                     {
                         foreach (var e in GameController.IngameState.IngameUi.InvitesPanel.Children)
                         {
@@ -89,6 +113,7 @@ namespace SimpleTrade
             }
             catch
             {
+                Input.KeyUp(System.Windows.Forms.Keys.Control);
                 IsRunning = false;
             }
         }
