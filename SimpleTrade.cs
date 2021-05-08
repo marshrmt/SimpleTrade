@@ -50,6 +50,12 @@ namespace SimpleTrade
 
                             foreach (var _slotItem in _playerInventory.InventorySlotItems)
                             {
+                                // Ignore swap item
+                                if (_slotItem.PosX == 11 && _slotItem.PosY == 0)
+                                {
+                                    break;
+                                }
+
                                 if (GameController.IngameState.IngameUi.TradeWindow.IsVisible)
                                 {
                                     Mouse.SetCursorPosition(_slotItem.GetClientRect());
