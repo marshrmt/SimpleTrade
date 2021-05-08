@@ -44,19 +44,18 @@ namespace SimpleTrade
 
                         if (_playerInventory != null)
                         {
-                            //Input.KeyUp(Keys.ControlKey);
-                           // Thread.Sleep(random.Next(25) + 30);
-                            //Input.KeyDown(Keys.ControlKey);
+                            Input.KeyUp(Keys.ControlKey);
+                            Thread.Sleep(random.Next(75) + 65);
+                            Input.KeyDown(Keys.ControlKey);
 
                             foreach (var _slotItem in _playerInventory.InventorySlotItems)
                             {
                                 if (GameController.IngameState.IngameUi.TradeWindow.IsVisible)
                                 {
                                     Mouse.SetCursorPosition(_slotItem.GetClientRect());
-                                    Thread.Sleep(random.Next(55) + 40);
-                                    Input.KeyDown(Keys.LButton | Keys.ControlKey);
-                                    Thread.Sleep(random.Next(55) + 40);
-                                    Input.KeyUp(Keys.LButton | Keys.ControlKey);
+                                    Thread.Sleep(random.Next(75) + 65);
+                                    Input.Click(MouseButtons.Left);
+                                    Thread.Sleep(random.Next(75) + 65);
                                 }
                                 else
                                 {
@@ -64,8 +63,8 @@ namespace SimpleTrade
                                 }
                             }
 
-                            //Thread.Sleep(random.Next(25) + 30);
-                            //Input.KeyUp(Keys.ControlKey);
+                            Thread.Sleep(random.Next(75) + 65);
+                            Input.KeyUp(Keys.ControlKey);
                         }
                     }
                 }
