@@ -88,6 +88,7 @@ namespace SimpleTrade
                             }
 
                             Thread.Sleep(500);
+                        }
                     }
                 }
                 else if (GameController.IngameState.IngameUi.InvitesPanel.IsVisible && GameController.IngameState.IngameUi.InvitesPanel.ChildCount > 0)
