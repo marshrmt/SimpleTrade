@@ -66,7 +66,13 @@ namespace SimpleTrade
                             if (invitePlayerWrapperPanel.Children.Count == 1)
                             {
                                 invitePlayerWrapperPanel = invitePlayerWrapperPanel.Children[0];
-                                Graphics.DrawText($"invitePlayerPanel child count: {invitePlayerWrapperPanel.Children.Count}", new Vector2(100, 240));
+
+                                if (invitePlayerWrapperPanel.Children.Count == 5)
+                                {
+                                    Element invitePlayerNamePanel = invitePlayerWrapperPanel.Children[0];
+                                    Graphics.DrawText($"invitePlayerPanel child count: {invitePlayerNamePanel.Children.Count}", new Vector2(100, 240));
+                                }
+                                
                             }
                                 
                         }
