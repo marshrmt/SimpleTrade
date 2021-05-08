@@ -207,10 +207,19 @@ namespace SimpleTrade
                 {
                     characterInfoPanel = characterInfoPanel.Children[0];
                     LogMessage($"{characterInfoPanel.Children.Count}");
-                    if (characterInfoPanel.Children.Count == 5) {
-                        characterName = characterInfoPanel.Children[0].Text;
-                        LogMessage($"char name: {characterName}");
+
+                    if (characterInfoPanel.Children.Count == 1)
+                    {
+                        characterInfoPanel = characterInfoPanel.Children[0];
+                        LogMessage($"{characterInfoPanel.Children.Count}");
+
+                        if (characterInfoPanel.Children.Count == 5)
+                        {
+                            characterName = characterInfoPanel.Children[0].Text;
+                            LogMessage($"char name: {characterName}");
+                        }
                     }
+                    
                 }
 
                 if (inviteButtonsPanel.Children.Count == 2)
