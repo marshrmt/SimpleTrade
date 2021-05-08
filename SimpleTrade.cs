@@ -38,7 +38,7 @@ namespace SimpleTrade
             {
                 if (GameController.IngameState.IngameUi.TradeWindow.IsVisible)
                 {
-                    if (GameController.IngameState.IngameUi.TradeWindow.NameSeller == Settings.AutoTradeToCharName.Value)
+                    if (GameController.IngameState.IngameUi.TradeWindow?.NameSeller == Settings.AutoTradeToCharName.Value)
                     {
                         var _playerInventory = GameController.IngameState.ServerData.GetPlayerInventoryByType(InventoryTypeE.MainInventory);
 
@@ -71,7 +71,23 @@ namespace SimpleTrade
 
                             Thread.Sleep(random.Next(75) + 65);
                             Input.KeyUp(Keys.LControlKey);
-                        }
+
+                            Thread.Sleep(250);
+
+                            if (GameController.IngameState.IngameUi.TradeWindow.IsVisible)
+                            {
+                                Mouse.SetCursorPosition(GameController.IngameState.IngameUi.TradeWindow.AcceptButton.GetClientRect());
+                                Thread.Sleep(random.Next(120) + 310);
+                                if (GameController.IngameState.IngameUi.TradeWindow?.NameSeller == Settings.AutoTradeToCharName.Value) Input.Click(MouseButtons.Left);
+                                Thread.Sleep(random.Next(120) + 110);
+                            }
+
+                            while (GameController.IngameState.IngameUi.TradeWindow.IsVisible)
+                            {
+                                Thread.Sleep(75);
+                            }
+
+                            Thread.Sleep(500);
                     }
                 }
                 else if (GameController.IngameState.IngameUi.InvitesPanel.IsVisible && GameController.IngameState.IngameUi.InvitesPanel.ChildCount > 0)
@@ -197,45 +213,7 @@ namespace SimpleTrade
 
         public override void Render()
         {
-            Graphics.DrawText("Simple Trade is working", new Vector2(100, 100));
-            Graphics.DrawText($"Invites Panel is visible: {GameController.IngameState.IngameUi.InvitesPanel.IsVisible}", new Vector2(100, 120));
-            Graphics.DrawText($"Trade Window is visible: {GameController.IngameState.IngameUi.TradeWindow.IsVisible}", new Vector2(100, 140));
-
-            if (GameController.IngameState.IngameUi.TradeWindow.IsVisible)
-            {
-                Graphics.DrawText($"Trading with: {GameController.IngameState.IngameUi.TradeWindow.NameSeller}", new Vector2(100, 160));
-            }
-
-            if (GameController.IngameState.IngameUi.InvitesPanel.IsVisible)
-            {
-                Graphics.DrawText($"Invites Panel children count: {GameController.IngameState.IngameUi.InvitesPanel.Children.Count}", new Vector2(100, 180));
-                
-                /*if (GameController.IngameState.IngameUi.InvitesPanel.Children.Count > 0)
-                {
-                    if (GameController.IngameState.IngameUi.InvitesPanel.Children[0].GetClientRect().Y != prevInvitePos)
-                    {
-                        lastInvitePosChange = DateTime.Now;
-                    }
-
-                    if (lastInvitePosChange.AddMilliseconds(300) < DateTime.Now)
-                    {
-                        int i = 0;
-                        foreach (var e in GameController.IngameState.IngameUi.InvitesPanel.Children)
-                        {
-                            InviteElement invite = GetInviteElement(e);
-
-                            Graphics.DrawText($"inv acc name {invite.accountName}, type: {invite.inviteType}", new Vector2(100, 200 + i * 20));
-
-                            Graphics.DrawBox(invite.acceptButtonClientRect, Color.FromRgba(0x2200FF00));
-
-                            i++;
-                        }
-                    }
-
-                    prevInvitePos = GameController.IngameState.IngameUi.InvitesPanel.Children[0].GetClientRect().Y;
-
-                }*/
-            }
+            
         }
     }
 }
