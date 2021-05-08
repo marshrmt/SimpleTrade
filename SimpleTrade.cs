@@ -44,28 +44,23 @@ namespace SimpleTrade
                         //Graphics.DrawBox(inviteElement.Children[1].GetClientRect(), Color.FromRgba(0x2200FF00));
                         //Graphics.DrawBox(inviteElement.Children[2].GetClientRect(), Color.FromRgba(0x22FF0000));
 
-                        if (invitePlayerPanel.Children.Count > 1)
+
+
+                        if (inviteTitlePanel.Children.Count == 2)
                         {
-                            Element invitePlayerTitlePanel = invitePlayerPanel.Children[0];
+                            Element accountElement = inviteTitlePanel.Children[0];
+                            Element inviteTextElement = inviteTitlePanel.Children[1];
 
-                            if (invitePlayerTitlePanel.Children.Count == 2)
+                            if (accountElement.Children.Count == 2)
                             {
-                                Element playerElement = invitePlayerTitlePanel.Children[0];
-                                Element inviteTextElement = invitePlayerTitlePanel.Children[1];
+                                Element accountNameElement = accountElement.Children[1];
 
-                                if (playerElement.Children.Count == 2)
-                                {
-                                    Element playerNameElement = playerElement.Children[1];
-
-                                    Graphics.DrawText($"Player name sent invite: {playerNameElement.Text}", new Vector2(100, 200));
-                                    Graphics.DrawText($"Invite Text: {inviteTextElement.Text}", new Vector2(100, 220));
-                                }
+                                Graphics.DrawText($"Account name sent invite: {accountNameElement.Text}", new Vector2(100, 200));
+                                Graphics.DrawText($"Invite Text: {inviteTextElement.Text}", new Vector2(100, 220));
                             }
                         }
 
-                        
-
-
+                        Graphics.DrawText($"invitePlayerPanel child count: {invitePlayerPanel.Children.Count}", new Vector2(100, 240));
 
                         //Graphics.DrawText($"text: {inviteTitlePanel.Children[0].Text}, long text: {inviteTitlePanel.Children[0].LongText}, child count: {inviteTitlePanel.Children[0].Children.Count}", new Vector2(100, 200));
                         //Graphics.DrawText($"text: {inviteTitlePanel.Children[1].Text}, long text: {inviteTitlePanel.Children[1].LongText}, child count: {inviteTitlePanel.Children[1].Children.Count}", new Vector2(100, 220));
