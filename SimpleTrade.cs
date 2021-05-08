@@ -54,9 +54,9 @@ namespace SimpleTrade
                                 {
                                     Mouse.SetCursorPosition(_slotItem.GetClientRect());
                                     Thread.Sleep(random.Next(55) + 40);
-                                    Input.KeyDown(Keys.LButton | Keys.Control);
+                                    Input.KeyDown(Keys.LButton | Keys.ControlKey);
                                     Thread.Sleep(random.Next(55) + 40);
-                                    Input.KeyUp(Keys.LButton | Keys.Control);
+                                    Input.KeyUp(Keys.LButton | Keys.ControlKey);
                                 }
                                 else
                                 {
