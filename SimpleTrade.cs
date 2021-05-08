@@ -44,19 +44,26 @@ namespace SimpleTrade
                         //Graphics.DrawBox(inviteElement.Children[1].GetClientRect(), Color.FromRgba(0x2200FF00));
                         //Graphics.DrawBox(inviteElement.Children[2].GetClientRect(), Color.FromRgba(0x22FF0000));
 
-                        if (inviteTitlePanel.Children.Count == 2)
+                        if (invitePlayerPanel.Children.Count > 1)
                         {
-                            Element playerElement = inviteTitlePanel.Children[0];
-                            Element inviteTextElement = inviteTitlePanel.Children[1];
+                            Element invitePlayerTitlePanel = invitePlayerPanel.Children[0];
 
-                            if (playerElement.Children.Count == 2)
+                            if (invitePlayerTitlePanel.Children.Count == 2)
                             {
-                                Element playerNameElement = playerElement.Children[1];
+                                Element playerElement = invitePlayerTitlePanel.Children[0];
+                                Element inviteTextElement = invitePlayerTitlePanel.Children[1];
 
-                                Graphics.DrawText($"Player name sent invite: {playerNameElement.Text}", new Vector2(100, 200));
-                                Graphics.DrawText($"Invite Text: {inviteTextElement.Text}", new Vector2(100, 220));
+                                if (playerElement.Children.Count == 2)
+                                {
+                                    Element playerNameElement = playerElement.Children[1];
+
+                                    Graphics.DrawText($"Player name sent invite: {playerNameElement.Text}", new Vector2(100, 200));
+                                    Graphics.DrawText($"Invite Text: {inviteTextElement.Text}", new Vector2(100, 220));
+                                }
                             }
                         }
+
+                        
 
 
 
