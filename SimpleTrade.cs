@@ -101,7 +101,7 @@ namespace SimpleTrade
                             if (invite.inviteType == InviteType.Party && invite.accountName == Settings.AcceptPartyFrom.Value)
                             {
                                 Mouse.SetCursorPosition(invite.acceptButtonClientRect);
-                                Thread.Sleep(random.Next(120) + 110);
+                                Thread.Sleep(random.Next(120) + 310);
                                 Input.Click(MouseButtons.Left);
                                 Thread.Sleep(random.Next(120) + 110);
 
@@ -121,7 +121,7 @@ namespace SimpleTrade
                                 }
 
                                 Mouse.SetCursorPosition(invite.acceptButtonClientRect);
-                                Thread.Sleep(random.Next(120) + 110);
+                                Thread.Sleep(random.Next(120) + 310);
                                 Input.Click(MouseButtons.Left);
                                 Thread.Sleep(random.Next(120) + 110);
 
