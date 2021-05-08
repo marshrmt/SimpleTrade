@@ -53,7 +53,7 @@ namespace SimpleTrade
                                 // Ignore swap item
                                 if (_slotItem.PosX == 11 && _slotItem.PosY == 0)
                                 {
-                                    break;
+                                    //break;
                                 }
 
                                 if (GameController.IngameState.IngameUi.TradeWindow.IsVisible)
@@ -100,9 +100,9 @@ namespace SimpleTrade
 
                             if (invite.inviteType == InviteType.Party && invite.accountName == Settings.AcceptPartyFrom.Value)
                             {
-                                Mouse.SetCursorPosAndLeftClickHuman(invite.acceptButtonClientRect, 200);
+                                Mouse.SetCursorPosAndLeftClickHuman(invite.acceptButtonClientRect, 300);
 
-                                Thread.Sleep(300);
+                                Thread.Sleep(500);
 
                                 IsRunning = false;
                                 return;
@@ -117,9 +117,9 @@ namespace SimpleTrade
                                     return;
                                 }
 
-                                Mouse.SetCursorPosAndLeftClickHuman(invite.acceptButtonClientRect, 200);
+                                Mouse.SetCursorPosAndLeftClickHuman(invite.acceptButtonClientRect, 300);
 
-                                Thread.Sleep(300);
+                                Thread.Sleep(500);
 
                                 IsRunning = false;
                                 return;
