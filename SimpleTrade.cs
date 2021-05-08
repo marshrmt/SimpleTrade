@@ -103,6 +103,14 @@ namespace SimpleTrade
                             }
                             else if (invite.inviteType == InviteType.Trade && invite.accountName == Settings.AcceptTradeFrom.Value)
                             {
+                                var _playerInventory = GameController.IngameState.ServerData.GetPlayerInventoryByType(InventoryTypeE.MainInventory);
+
+                                if (_playerInventory?.InventorySlotItems != null && _playerInventory.InventorySlotItems.Count <= 2)
+                                {
+                                    IsRunning = false;
+                                    return;
+                                }
+
                                 Mouse.SetCursorPosAndLeftClickHuman(invite.acceptButtonClientRect, 200);
 
                                 Thread.Sleep(300);
