@@ -13,6 +13,43 @@ namespace SimpleTrade
     class SimpleTrade : BaseSettingsPlugin<SimpleTradeSettings>
     {
 
+        private static bool IsRunning { get; set; } = false;
+
+        private static float prevInvitePos { get; set; } = 0;
+
+        public override Job Tick()
+        {
+            if (IsRunning) return null;
+
+            IsRunning = true;
+
+            return new Job("SimpleTrade", Job);
+        }
+
+        private void Job()
+        {
+            try
+            {
+                if (GameController.IngameState.IngameUi.TradeWindow.IsVisible)
+                {
+
+                }
+                else if (GameController.IngameState.IngameUi.InvitesPanel.IsVisible && GameController.IngameState.IngameUi.InvitesPanel.ChildCount > 0)
+                {
+
+                }
+                else 
+                {
+                    IsRunning = false;
+                    return;
+                }
+            }
+            catch
+            {
+                IsRunning = false;
+            }
+        }
+
         private InviteElement GetInviteElement(Element element)
         {
             string accountName = null;
@@ -73,16 +110,25 @@ namespace SimpleTrade
             {
                 Graphics.DrawText($"Invites Panel children count: {GameController.IngameState.IngameUi.InvitesPanel.Children.Count}", new Vector2(100, 180));
                 
-                int i = 0;
-                foreach (var e in GameController.IngameState.IngameUi.InvitesPanel.Children)
+                if (GameController.IngameState.IngameUi.InvitesPanel.Children.Count > 0)
                 {
-                    InviteElement invite = GetInviteElement(e);
+                    if (GameController.IngameState.IngameUi.InvitesPanel.Children[0].GetClientRect().Y == prevInvitePos)
+                    {
+                        int i = 0;
+                        foreach (var e in GameController.IngameState.IngameUi.InvitesPanel.Children)
+                        {
+                            InviteElement invite = GetInviteElement(e);
 
-                    Graphics.DrawText($"inv acc name {invite.accountName}, type: {invite.inviteType}", new Vector2(100, 200 + i * 20));
+                            Graphics.DrawText($"inv acc name {invite.accountName}, type: {invite.inviteType}", new Vector2(100, 200 + i * 20));
 
-                    Graphics.DrawBox(invite.acceptButtonClientRect, Color.FromRgba(0x2200FF00));
+                            Graphics.DrawBox(invite.acceptButtonClientRect, Color.FromRgba(0x2200FF00));
 
-                    i++;
+                            i++;
+                        }
+                    }
+
+                    prevInvitePos = GameController.IngameState.IngameUi.InvitesPanel.Children[0].GetClientRect().Y;
+
                 }
             }
         }
