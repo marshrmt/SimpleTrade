@@ -45,6 +45,7 @@ namespace SimpleTrade
                             if (e.GetClientRect().Y != prevInvitePos)
                             {
                                 lastInvitePosChange = DateTime.Now;
+                                prevInvitePos = e.GetClientRect().Y;
                                 break;
                             }
 
