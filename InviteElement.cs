@@ -1,4 +1,5 @@
 ﻿using ExileCore.PoEMemory;
+using SharpDX;
 
 namespace SimpleTrade
 {
@@ -11,15 +12,15 @@ namespace SimpleTrade
 
     class InviteElement
     {
-        private string accountName { get; } = null;
-        private InviteType inviteType { get; } = InviteType.Unknown;
-        private Element acceptButton { get; } = null;
+        public string accountName { get; private set; } = null;
+        public InviteType inviteType { get; private set; } = InviteType.Unknown;
+        public RectangleF acceptButtonClientRect { get; private set; } = new RectangleF();
 
-        public InviteElement(string name, InviteType type, Element button)
+        public InviteElement(string name, InviteType type, RectangleF buttonRect)
         {
             this.accountName = name;
             this.inviteType = type;
-            this.acceptButton = button;
+            this.acceptButtonClientRect = buttonRect;
         }
 }
 }

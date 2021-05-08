@@ -17,7 +17,7 @@ namespace SimpleTrade
         {
             string accountName = null;
             InviteType inviteType = InviteType.Unknown;
-            Element acceptButton = null;
+            RectangleF acceptButtonRect = new RectangleF();
 
             if (element.Children.Count == 3)
             {
@@ -48,9 +48,14 @@ namespace SimpleTrade
                         }
                     }
                 }
+
+                if (inviteButtonsPanel.Children.Count == 2)
+                {
+                    acceptButtonRect = inviteButtonsPanel.Children[0].GetClientRect();
+                }
             }
 
-            return new InviteElement(accountName, inviteType, acceptButton);
+            return new InviteElement(accountName, inviteType, acceptButtonRect);
         }
 
         public override void Render()
@@ -67,28 +72,17 @@ namespace SimpleTrade
             if (GameController.IngameState.IngameUi.InvitesPanel.IsVisible)
             {
                 Graphics.DrawText($"Invites Panel children count: {GameController.IngameState.IngameUi.InvitesPanel.Children.Count}", new Vector2(100, 180));
-
-                if (GameController.IngameState.IngameUi.InvitesPanel.Children.Count == 1)
+                
+                int i = 0;
+                foreach (var e in GameController.IngameState.IngameUi.InvitesPanel.Children)
                 {
-                    Element inviteElement = GameController.IngameState.IngameUi.InvitesPanel.Children[0];
+                    InviteElement invite = GetInviteElement(e);
 
-                    if (inviteElement.Children.Count == 3)
-                    {
-                        Element inviteTitlePanel = inviteElement.Children[0];
-                        Element invitePlayerPanel = inviteElement.Children[1];
-                        Element inviteButtonsPanel = inviteElement.Children[2];
+                    Graphics.DrawText($"inv acc name {invite.accountName}, type: {invite.inviteType}", new Vector2(100, 200 + i * 20));
 
-                        Graphics.DrawText($"inviteButtonsPanel children count: {inviteButtonsPanel.Children.Count}", new Vector2(100, 200));
+                    Graphics.DrawBox(invite.acceptButtonClientRect, Color.FromRgba(0x2200FF00));
 
-                        if (inviteButtonsPanel.Children.Count == 2)
-                        {
-                            Graphics.DrawBox(inviteButtonsPanel.Children[0].GetClientRect(), Color.FromRgba(0x2200FF00));
-                        }
-
-                        //Graphics.DrawBox(inviteTitlePanel.GetClientRect(), Color.FromRgba(0x220000FF));
-                        //Graphics.DrawBox(inviteElement.Children[1].GetClientRect(), Color.FromRgba(0x2200FF00));
-                        //Graphics.DrawBox(inviteElement.Children[2].GetClientRect(), Color.FromRgba(0x22FF0000));
-                    }
+                    i++;
                 }
             }
         }
