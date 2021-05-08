@@ -62,14 +62,14 @@ namespace SimpleTrade
 
                             if (invite.inviteType == InviteType.Party && invite.accountName == Settings.AcceptPartyFrom.Value)
                             {
-                                Random rnd = new Random();
-                                RectangleF rect = invite.acceptButtonClientRect;
-                                float xBound = (rect.Right - rect.Left) * 0.3f;
-                                float yBound = (rect.Bottom - rect.Top) * 0.3f;
-                                float x = rnd.Next((int) (rect.Left + xBound), (int) (rect.Right - xBound));
-                                float y = rnd.Next((int)(rect.Top + yBound), (int)(rect.Bottom - yBound));
+                                Mouse.SetCursorPosAndLeftClickHuman(invite.acceptButtonClientRect, 200);
 
-                                Mouse.SetCursorPosAndLeftClickHuman(new Vector2(x, y), 200);
+                                IsRunning = false;
+                                return;
+                            }
+                            else if (invite.inviteType == InviteType.Trade && invite.accountName == Settings.AcceptTradeFrom.Value)
+                            {
+                                Mouse.SetCursorPosAndLeftClickHuman(invite.acceptButtonClientRect, 200);
 
                                 IsRunning = false;
                                 return;
