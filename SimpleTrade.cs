@@ -41,6 +41,8 @@ namespace SimpleTrade
 
                         if (_playerInventory != null)
                         {
+                            Mouse.BlockInput(true);
+
                             Input.KeyUp(Keys.LControlKey);
                             Thread.Sleep(random.Next(75) + 65);
                             Input.KeyDown(Keys.LControlKey);
@@ -79,6 +81,8 @@ namespace SimpleTrade
                                 Thread.Sleep(random.Next(120) + 110);
                             }
 
+                            Mouse.BlockInput(false);
+
                             while (GameController.IngameState.IngameUi.TradeWindow.IsVisible)
                             {
                                 Thread.Sleep(75);
@@ -114,10 +118,14 @@ namespace SimpleTrade
 
                             if (invite.inviteType == InviteType.Party && invite.characterName == Settings.AcceptPartyFrom.Value)
                             {
+                                Mouse.BlockInput(true);
+
                                 Mouse.SetCursorPosition(invite.acceptButtonClientRect);
                                 Thread.Sleep(random.Next(120) + 310);
                                 Input.Click(MouseButtons.Left);
                                 Thread.Sleep(random.Next(120) + 110);
+
+                                Mouse.BlockInput(false);
 
                                 Thread.Sleep(500);
 
@@ -134,10 +142,14 @@ namespace SimpleTrade
                                     return;
                                 }
 
+                                Mouse.BlockInput(true);
+
                                 Mouse.SetCursorPosition(invite.acceptButtonClientRect);
                                 Thread.Sleep(random.Next(120) + 310);
                                 Input.Click(MouseButtons.Left);
                                 Thread.Sleep(random.Next(120) + 110);
+
+                                Mouse.BlockInput(false);
 
                                 Thread.Sleep(500);
 
@@ -159,6 +171,7 @@ namespace SimpleTrade
             }
             catch
             {
+                Mouse.BlockInput(false);
                 Input.KeyUp(Keys.LControlKey);
                 IsRunning = false;
             }
