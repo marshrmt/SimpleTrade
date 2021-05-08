@@ -80,6 +80,11 @@ namespace SimpleTrade
 
                         Graphics.DrawText($"inviteButtonsPanel children count: {inviteButtonsPanel.Children.Count}", new Vector2(100, 200));
 
+                        if (inviteButtonsPanel.Children.Count == 2)
+                        {
+                            Graphics.DrawBox(inviteButtonsPanel.Children[0].GetClientRect(), Color.FromRgba(0x2200FF00));
+                        }
+
                         //Graphics.DrawBox(inviteTitlePanel.GetClientRect(), Color.FromRgba(0x220000FF));
                         //Graphics.DrawBox(inviteElement.Children[1].GetClientRect(), Color.FromRgba(0x2200FF00));
                         //Graphics.DrawBox(inviteElement.Children[2].GetClientRect(), Color.FromRgba(0x22FF0000));
