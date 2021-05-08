@@ -160,6 +160,16 @@ namespace SimpleTrade
             return new Vector2(currentMousePoint.X, currentMousePoint.Y);
         }
 
+        public static void SetCursorPosition(RectangleF rect)
+        {
+            float xBound = (rect.Right - rect.Left) * 0.3f;
+            float yBound = (rect.Bottom - rect.Top) * 0.3f;
+            float x = rnd.Next((int)(rect.Left + xBound), (int)(rect.Right - xBound));
+            float y = rnd.Next((int)(rect.Top + yBound), (int)(rect.Bottom - yBound));
+
+            SetCursorPosition(new Vector2(x, y));
+        }
+
         public static void SetCursorPosition(Vector2 end)
         {
             var cursor = GetCursorPositionVector();

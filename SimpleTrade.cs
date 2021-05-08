@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using ExileCore;
 using ExileCore.PoEMemory;
 using ExileCore.PoEMemory.Elements;
@@ -43,20 +44,27 @@ namespace SimpleTrade
 
                         if (_playerInventory != null)
                         {
-                            Input.KeyUp(System.Windows.Forms.Keys.Control);
+                            Input.KeyUp(Keys.Control);
                             Thread.Sleep(random.Next(25) + 30);
-                            Input.KeyDown(System.Windows.Forms.Keys.Control);
+                            Input.KeyDown(Keys.Control);
 
                             foreach (var _slotItem in _playerInventory.InventorySlotItems)
                             {
                                 if (GameController.IngameState.IngameUi.TradeWindow.IsVisible)
                                 {
-                                    Mouse.SetCursorPosAndLeftClickHuman(_slotItem.GetClientRect(), random.Next(25) + 30);
+                                    Mouse.SetCursorPosition(_slotItem.GetClientRect());
+                                    Thread.Sleep(random.Next(25) + 30);
+                                    Input.Click(MouseButtons.Left);
+                                    Thread.Sleep(random.Next(25) + 30);
+                                }
+                                else
+                                {
+                                    break;
                                 }
                             }
 
                             Thread.Sleep(random.Next(25) + 30);
-                            Input.KeyUp(System.Windows.Forms.Keys.Control);
+                            Input.KeyUp(Keys.Control);
                         }
                     }
                 }
