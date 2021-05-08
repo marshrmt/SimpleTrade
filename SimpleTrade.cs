@@ -202,10 +202,14 @@ namespace SimpleTrade
                     }
                 }
 
-                if (characterInfoPanel.Children.Count == 5)
+                if (characterInfoPanel.Children.Count == 1)
                 {
-                    characterName = characterInfoPanel.Children[0].Text;
-                    LogMessage($"char name: {characterName}");
+                    characterInfoPanel = characterInfoPanel.Children[0];
+
+                    if (characterInfoPanel.Children.Count == 5) {
+                        characterName = characterInfoPanel.Children[0].Text;
+                        LogMessage($"char name: {characterName}");
+                    }
                 }
 
                 if (inviteButtonsPanel.Children.Count == 2)
