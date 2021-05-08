@@ -202,6 +202,7 @@ namespace SimpleTrade
                     }
                 }
 
+                LogMessage($"{characterInfoPanel.Children.Count}");
                 if (characterInfoPanel.Children.Count == 1)
                 {
                     characterInfoPanel = characterInfoPanel.Children[0];
