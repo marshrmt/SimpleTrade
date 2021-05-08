@@ -44,8 +44,24 @@ namespace SimpleTrade
                         //Graphics.DrawBox(inviteElement.Children[1].GetClientRect(), Color.FromRgba(0x2200FF00));
                         //Graphics.DrawBox(inviteElement.Children[2].GetClientRect(), Color.FromRgba(0x22FF0000));
 
-                        Graphics.DrawText($"text: {inviteTitlePanel.Children[0].Text}, long text: {inviteTitlePanel.Children[0].LongText}, child count: {inviteTitlePanel.Children[0].Children.Count}", new Vector2(100, 200));
-                        Graphics.DrawText($"text: {inviteTitlePanel.Children[1].Text}, long text: {inviteTitlePanel.Children[1].LongText}, child count: {inviteTitlePanel.Children[1].Children.Count}", new Vector2(100, 220));
+                        if (inviteTitlePanel.Children.Count == 2)
+                        {
+                            Element playerElement = inviteTitlePanel.Children[0];
+                            Element inviteTextElement = inviteTitlePanel.Children[1];
+
+                            if (playerElement.Children.Count == 2)
+                            {
+                                Element playerNameElement = playerElement.Children[1];
+
+                                Graphics.DrawText($"Player name sent invite: {playerNameElement.Text}", new Vector2(100, 200));
+                                Graphics.DrawText($"Invite Text: {inviteTextElement.Text}", new Vector2(100, 220));
+                            }
+                        }
+
+
+
+                        //Graphics.DrawText($"text: {inviteTitlePanel.Children[0].Text}, long text: {inviteTitlePanel.Children[0].LongText}, child count: {inviteTitlePanel.Children[0].Children.Count}", new Vector2(100, 200));
+                        //Graphics.DrawText($"text: {inviteTitlePanel.Children[1].Text}, long text: {inviteTitlePanel.Children[1].LongText}, child count: {inviteTitlePanel.Children[1].Children.Count}", new Vector2(100, 220));
                     }
                 }
             }
