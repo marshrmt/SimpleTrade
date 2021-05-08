@@ -53,7 +53,7 @@ namespace SimpleTrade
                                 // Ignore swap item
                                 if (_slotItem.PosX == 11 && _slotItem.PosY == 0)
                                 {
-                                    //break;
+                                    continue;
                                 }
 
                                 if (GameController.IngameState.IngameUi.TradeWindow.IsVisible)
