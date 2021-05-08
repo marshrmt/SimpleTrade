@@ -38,13 +38,45 @@ namespace SimpleTrade
                 }
                 else if (GameController.IngameState.IngameUi.InvitesPanel.IsVisible && GameController.IngameState.IngameUi.InvitesPanel.ChildCount > 0)
                 {
-                    
+                    if (GameController.IngameState.IngameUi.InvitesPanel.Children[0].GetClientRect().Y != prevInvitePos)
+                    {
+                        lastInvitePosChange = DateTime.Now;
+                    }
+
+                    // Wait while invite panel scrolling up
+                    if (lastInvitePosChange.AddMilliseconds(300) < DateTime.Now)
+                    {
+                        foreach (var e in GameController.IngameState.IngameUi.InvitesPanel.Children)
+                        {
+                            InviteElement invite = GetInviteElement(e);
+
+                            if (invite.inviteType == InviteType.Party && invite.accountName == Settings.AcceptPartyFrom.Value)
+                            {
+                                Random rnd = new Random();
+                                RectangleF rect = invite.acceptButtonClientRect;
+                                float xBound = (rect.Right - rect.Left) * 0.2f;
+                                float yBound = (rect.Bottom - rect.Top) * 0.2f;
+                                float x = rnd.Next((int) (rect.Left + xBound), (int) (rect.Right - xBound));
+                                float y = rnd.Next((int)(rect.Top + yBound), (int)(rect.Bottom - yBound));
+
+                                Mouse.SetCursorPosAndLeftClickHuman(new Vector2(x, y), 200);
+
+                                IsRunning = false;
+                                return;
+                            }
+                        }
+                    }
+
+                    prevInvitePos = GameController.IngameState.IngameUi.InvitesPanel.Children[0].GetClientRect().Y;
                 }
-                else 
+                else
                 {
                     IsRunning = false;
                     return;
                 }
+
+                IsRunning = false;
+                return;
             }
             catch
             {
@@ -112,7 +144,7 @@ namespace SimpleTrade
             {
                 Graphics.DrawText($"Invites Panel children count: {GameController.IngameState.IngameUi.InvitesPanel.Children.Count}", new Vector2(100, 180));
                 
-                if (GameController.IngameState.IngameUi.InvitesPanel.Children.Count > 0)
+                /*if (GameController.IngameState.IngameUi.InvitesPanel.Children.Count > 0)
                 {
                     if (GameController.IngameState.IngameUi.InvitesPanel.Children[0].GetClientRect().Y != prevInvitePos)
                     {
@@ -136,7 +168,7 @@ namespace SimpleTrade
 
                     prevInvitePos = GameController.IngameState.IngameUi.InvitesPanel.Children[0].GetClientRect().Y;
 
-                }
+                }*/
             }
         }
     }
