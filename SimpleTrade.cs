@@ -37,7 +37,7 @@ namespace SimpleTrade
                     Graphics.DrawText($"Invite text: {inviteElement.Text}", new Vector2(100, 220));
                     Graphics.DrawText($"Invite long text: {inviteElement.LongText}", new Vector2(100, 240));
 
-                    Graphics.DrawBox(new RectangleF(inviteElement.Children[0].X, inviteElement.Children[0].Y, inviteElement.Children[0].Width, inviteElement.Children[0].Height), highlight);
+                    Graphics.DrawBox(new RectangleF(inviteElement.Children[1].X, inviteElement.Children[0].Y, inviteElement.Children[0].Width, inviteElement.Children[0].Height), highlight);
                     
                 }
             }
