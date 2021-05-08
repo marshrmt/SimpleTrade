@@ -35,7 +35,7 @@ namespace SimpleTrade
             {
                 if (GameController.IngameState.IngameUi.TradeWindow.IsVisible)
                 {
-                    if (GameController.IngameState.IngameUi.TradeWindow?.NameSeller == Settings.AutoTradeToCharName.Value)
+                    if (GameController.IngameState.IngameUi.TradeWindow?.NameSeller == Settings.AcceptTradeFrom.Value)
                     {
                         var _playerInventory = GameController.IngameState.ServerData.GetPlayerInventoryByType(InventoryTypeE.MainInventory);
 
@@ -75,7 +75,7 @@ namespace SimpleTrade
                             {
                                 Mouse.SetCursorPosition(GameController.IngameState.IngameUi.TradeWindow.AcceptButton.GetClientRect());
                                 Thread.Sleep(random.Next(120) + 310);
-                                if (GameController.IngameState.IngameUi.TradeWindow?.NameSeller == Settings.AutoTradeToCharName.Value) Input.Click(MouseButtons.Left);
+                                if (GameController.IngameState.IngameUi.TradeWindow?.NameSeller == Settings.AcceptTradeFrom.Value) Input.Click(MouseButtons.Left);
                                 Thread.Sleep(random.Next(120) + 110);
                             }
 
@@ -112,7 +112,7 @@ namespace SimpleTrade
                         {
                             InviteElement invite = GetInviteElement(e);
 
-                            if (invite.inviteType == InviteType.Party && invite.accountName == Settings.AcceptPartyFrom.Value)
+                            if (invite.inviteType == InviteType.Party && invite.characterName == Settings.AcceptPartyFrom.Value)
                             {
                                 Mouse.SetCursorPosition(invite.acceptButtonClientRect);
                                 Thread.Sleep(random.Next(120) + 310);
@@ -124,7 +124,7 @@ namespace SimpleTrade
                                 IsRunning = false;
                                 return;
                             }
-                            else if (invite.inviteType == InviteType.Trade && invite.accountName == Settings.AcceptTradeFrom.Value)
+                            else if (invite.inviteType == InviteType.Trade && invite.characterName == Settings.AcceptTradeFrom.Value)
                             {
                                 var _playerInventory = GameController.IngameState.ServerData.GetPlayerInventoryByType(InventoryTypeE.MainInventory);
 
@@ -202,21 +202,17 @@ namespace SimpleTrade
                     }
                 }
 
-                LogMessage($"{characterInfoPanel.Children.Count}");
                 if (characterInfoPanel.Children.Count == 1)
                 {
                     characterInfoPanel = characterInfoPanel.Children[0];
-                    LogMessage($"{characterInfoPanel.Children.Count}");
 
                     if (characterInfoPanel.Children.Count == 1)
                     {
                         characterInfoPanel = characterInfoPanel.Children[0];
-                        LogMessage($"{characterInfoPanel.Children.Count}");
 
                         if (characterInfoPanel.Children.Count == 5)
                         {
                             characterName = characterInfoPanel.Children[0].Text;
-                            LogMessage($"char name: {characterName}");
                         }
                     }
                     
@@ -228,7 +224,7 @@ namespace SimpleTrade
                 }
             }
 
-            return new InviteElement(accountName, inviteType, acceptButtonRect);
+            return new InviteElement(accountName, characterName, inviteType, acceptButtonRect);
         }
 
         public override void Render()

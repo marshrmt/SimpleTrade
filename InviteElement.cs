@@ -17,9 +17,10 @@ namespace SimpleTrade
         public InviteType inviteType { get; private set; } = InviteType.Unknown;
         public RectangleF acceptButtonClientRect { get; private set; } = new RectangleF();
 
-        public InviteElement(string name, InviteType type, RectangleF buttonRect)
+        public InviteElement(string accName, string charName, InviteType type, RectangleF buttonRect)
         {
-            this.accountName = name;
+            this.accountName = accName;
+            this.characterName = charName;
             this.inviteType = type;
             this.acceptButtonClientRect = buttonRect;
         }
