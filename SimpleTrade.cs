@@ -77,7 +77,6 @@ namespace SimpleTrade
                         }
                     }
 
-                    prevInvitePos = GameController.IngameState.IngameUi.InvitesPanel.Children[0].GetClientRect().Y;
                 }
                 else
                 {
