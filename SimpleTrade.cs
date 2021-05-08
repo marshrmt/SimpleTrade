@@ -38,9 +38,18 @@ namespace SimpleTrade
                 }
                 else if (GameController.IngameState.IngameUi.InvitesPanel.IsVisible && GameController.IngameState.IngameUi.InvitesPanel.ChildCount > 0)
                 {
-                    if (GameController.IngameState.IngameUi.InvitesPanel.Children[0].GetClientRect().Y != prevInvitePos)
+                    foreach (var e in GameController.IngameState.IngameUi.InvitesPanel.Children)
                     {
-                        lastInvitePosChange = DateTime.Now;
+                        if (e.Children.Count == 3)
+                        {
+                            if (e.GetClientRect().Y != prevInvitePos)
+                            {
+                                lastInvitePosChange = DateTime.Now;
+                                break;
+                            }
+
+                            prevInvitePos = e.GetClientRect().Y;
+                        }
                     }
 
                     // Wait while invite panel scrolling up
@@ -54,8 +63,8 @@ namespace SimpleTrade
                             {
                                 Random rnd = new Random();
                                 RectangleF rect = invite.acceptButtonClientRect;
-                                float xBound = (rect.Right - rect.Left) * 0.2f;
-                                float yBound = (rect.Bottom - rect.Top) * 0.2f;
+                                float xBound = (rect.Right - rect.Left) * 0.3f;
+                                float yBound = (rect.Bottom - rect.Top) * 0.3f;
                                 float x = rnd.Next((int) (rect.Left + xBound), (int) (rect.Right - xBound));
                                 float y = rnd.Next((int)(rect.Top + yBound), (int)(rect.Bottom - yBound));
 
