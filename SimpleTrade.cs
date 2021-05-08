@@ -15,6 +15,8 @@ namespace SimpleTrade
 
         public override void Render()
         {
+            Color highlight = Color.FromRgba(0x22FFFFFF);
+
             Graphics.DrawText("Simple Trade is working", new SharpDX.Vector2(100, 100));
             Graphics.DrawText($"Invites Panel is visible: {GameController.IngameState.IngameUi.InvitesPanel.IsVisible}", new Vector2(100, 120));
             Graphics.DrawText($"Trade Window is visible: {GameController.IngameState.IngameUi.TradeWindow.IsVisible}", new Vector2(100, 140));
@@ -34,6 +36,9 @@ namespace SimpleTrade
                     Graphics.DrawText($"Invite children count: {inviteElement.Children.Count}", new Vector2(100, 200));
                     Graphics.DrawText($"Invite text: {inviteElement.Text}", new Vector2(100, 220));
                     Graphics.DrawText($"Invite long text: {inviteElement.LongText}", new Vector2(100, 240));
+
+                    Graphics.DrawBox(new RectangleF(inviteElement.Children[0].X, inviteElement.Children[0].Y, inviteElement.Children[0].Width, inviteElement.Children[0].Height), highlight);
+                    
                 }
             }
 
