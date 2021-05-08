@@ -37,7 +37,7 @@ namespace SimpleTrade
             {
                 if (GameController.IngameState.IngameUi.TradeWindow.IsVisible)
                 {
-                    if (GameController.IngameState.IngameUi.TradeWindow.NameSeller == Settings.AcceptTradeFrom.Value)
+                    if (GameController.IngameState.IngameUi.TradeWindow.NameSeller == Settings.AutoTradeToCharName.Value)
                     {
                         var _playerInventory = GameController.IngameState.ServerData.GetPlayerInventoryByType(InventoryTypeE.MainInventory);
 
