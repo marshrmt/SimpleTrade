@@ -17,6 +17,8 @@ namespace SimpleTrade
 
         private static float prevInvitePos { get; set; } = 0;
 
+        private static DateTime lastInvitePosChange { get; set; } = DateTime.Now;
+
         public override Job Tick()
         {
             if (IsRunning) return null;
@@ -36,7 +38,7 @@ namespace SimpleTrade
                 }
                 else if (GameController.IngameState.IngameUi.InvitesPanel.IsVisible && GameController.IngameState.IngameUi.InvitesPanel.ChildCount > 0)
                 {
-
+                    
                 }
                 else 
                 {
@@ -112,7 +114,12 @@ namespace SimpleTrade
                 
                 if (GameController.IngameState.IngameUi.InvitesPanel.Children.Count > 0)
                 {
-                    if (GameController.IngameState.IngameUi.InvitesPanel.Children[0].GetClientRect().Y == prevInvitePos)
+                    if (GameController.IngameState.IngameUi.InvitesPanel.Children[0].GetClientRect().Y != prevInvitePos)
+                    {
+                        lastInvitePosChange = DateTime.Now;
+                    }
+
+                    if (lastInvitePosChange.AddMilliseconds(500) > DateTime.Now)
                     {
                         int i = 0;
                         foreach (var e in GameController.IngameState.IngameUi.InvitesPanel.Children)
