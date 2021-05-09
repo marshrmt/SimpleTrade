@@ -48,7 +48,7 @@ namespace SimpleTrade
                             Thread.Sleep(random.Next(75) + 65);
                             Input.KeyDown(Keys.LControlKey);
 
-                            var sortedInventory = _playerInventory?.InventorySlotItems?.OrderBy(I => I.SizeX * I.SizeY).ThenBy(I => I.PosX).ThenBy(I => I.PosY);
+                            var sortedInventory = _playerInventory?.InventorySlotItems?.OrderByDescending(I => I.SizeX * I.SizeY).ThenBy(I => I.PosX).ThenBy(I => I.PosY);
 
                             foreach (var _slotItem in sortedInventory)
                             {
