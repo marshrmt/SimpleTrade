@@ -5,6 +5,7 @@ using ExileCore.PoEMemory;
 using ExileCore.Shared.Enums;
 using SharpDX;
 using System.Threading;
+using System.Linq;
 
 namespace SimpleTrade
 {
@@ -47,7 +48,9 @@ namespace SimpleTrade
                             Thread.Sleep(random.Next(75) + 65);
                             Input.KeyDown(Keys.LControlKey);
 
-                            foreach (var _slotItem in _playerInventory.InventorySlotItems)
+                            var sortedInventory = _playerInventory?.InventorySlotItems?.OrderBy(I => I.SizeX * I.SizeY).ThenBy(I => I.PosX).ThenBy(I => I.PosY);
+
+                            foreach (var _slotItem in sortedInventory)
                             {
                                 // Ignore swap item
                                 if (_slotItem.PosX == 11 && _slotItem.PosY == 0)
