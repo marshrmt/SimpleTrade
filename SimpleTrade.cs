@@ -61,9 +61,9 @@ namespace SimpleTrade
                                 if (GameController.IngameState.IngameUi.TradeWindow.IsVisible)
                                 {
                                     Mouse.SetCursorPosition(_slotItem.GetClientRect());
-                                    Thread.Sleep(random.Next(55) + 45);
+                                    Thread.Sleep(random.Next(55) + 75);
                                     if (GameController.IngameState.IngameUi.TradeWindow.IsVisible) Input.Click(MouseButtons.Left);
-                                    Thread.Sleep(random.Next(25) + 25);
+                                    Thread.Sleep(random.Next(45) + 45);
                                 }
                                 else
                                 {
