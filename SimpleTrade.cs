@@ -245,7 +245,14 @@ namespace SimpleTrade
 
         public override void Render()
         {
-            
+            Graphics.DrawText("Simple Trade is working", new SharpDX.Vector2(100, 100));
+            Graphics.DrawText($"Invites Panel is visible: {GameController.IngameState.IngameUi.InvitesPanel.IsVisible}", new SharpDX.Vector2(100, 120));
+            Graphics.DrawText($"Trade Window is visible: {GameController.IngameState.IngameUi.TradeWindow.IsVisible}", new SharpDX.Vector2(100, 140));
+
+            if (GameController.IngameState.IngameUi.TradeWindow.IsVisible)
+            {
+                Graphics.DrawText($"Trading with: {GameController.IngameState.IngameUi.TradeWindow.NameSeller}", new SharpDX.Vector2(100, 160));
+            }
         }
     }
 }
