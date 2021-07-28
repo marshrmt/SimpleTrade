@@ -252,10 +252,10 @@ namespace SimpleTrade
             Graphics.DrawText($"Trade Window is visible: {GameController.IngameState.IngameUi?.InvitesPanel?.ChildCount}", new SharpDX.Vector2(100, 200));
 
 
-            if (GameController.IngameState.IngameUi.TradeWindow.IsVisible)
-            {
+            //if (GameController.IngameState.IngameUi.TradeWindow.IsVisible)
+            //{
                 Graphics.DrawText($"Trading with: {GameController.IngameState.IngameUi.TradeWindow.NameSeller}", new SharpDX.Vector2(100, 160));
-            }
+            //}
         }
     }
 }
