@@ -259,9 +259,18 @@ namespace SimpleTrade
                 {
                     Graphics.DrawText($"Child {i}, data: {tradeWindow.Children[i].LongText} + | + {tradeWindow.Children[i].Text}", new SharpDX.Vector2(100, 180 + m * 20));
                     m++;
-                    for (int j = 0; j < tradeWindow.Children[i].Children.Count; j++)
+
+                    if (tradeWindow.Children[i].Children.Count < 7)
                     {
-                        Graphics.DrawText($"Child {i}, data: {tradeWindow.Children[i].Children[j].LongText} + | + {tradeWindow.Children[i].Children[j].Text}", new SharpDX.Vector2(120, 180 + m * 20));
+                        for (int j = 0; j < tradeWindow.Children[i].Children.Count; j++)
+                        {
+                            Graphics.DrawText($"Child {j}, data: {tradeWindow.Children[i].Children[j].LongText} + | + {tradeWindow.Children[i].Children[j].Text}", new SharpDX.Vector2(120, 180 + m * 20));
+                            m++;
+                        }
+                    }
+                    else
+                    {
+                        Graphics.DrawText($"Too Many Children", new SharpDX.Vector2(120, 180 + m * 20));
                         m++;
                     }
                 }
