@@ -249,13 +249,16 @@ namespace SimpleTrade
             IngameUIElements igu = GameController?.Game?.IngameState?.IngameUi;
             string visibleUIElements = "";
 
+            //tradewindow [35]
+            //
+
             if (igu != null && igu.Children != null)
             {
                 for (int i = 0; i < igu.Children.Count; i++)
                 {
                     if (igu.Children[i].IsVisible)
                     {
-                        visibleUIElements += $"{i} ";
+                        visibleUIElements += $"{i} [{igu.Children[i].ChildCount}]";
                     }
                 }
 
