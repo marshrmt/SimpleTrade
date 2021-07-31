@@ -252,7 +252,7 @@ namespace SimpleTrade
             //tradewindow [35]
             //invitespanel [127]
 
-            int i, k;
+            int i, k = 0;
             if (igu != null && igu.Children != null)
             {
                 for (i = 0; i < igu.Children.Count; i++)
