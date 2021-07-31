@@ -6,6 +6,7 @@ using ExileCore.Shared.Enums;
 using SharpDX;
 using System.Threading;
 using System.Linq;
+using ExileCore.PoEMemory.MemoryObjects;
 
 namespace SimpleTrade
 {
@@ -245,7 +246,23 @@ namespace SimpleTrade
 
         public override void Render()
         {
-            Graphics.DrawText("Simple Trade is working", new SharpDX.Vector2(100, 100));
+            IngameUIElements igu = GameController?.Game?.IngameState?.IngameUi;
+            string visibleUIElements = "";
+
+            if (igu != null && igu.Children != null)
+            {
+                for (int i = 0; i < igu.Children.Count; i++)
+                {
+                    if (igu.Children[i].IsVisible)
+                    {
+                        visibleUIElements += $"{igu.Children[i]} ";
+                    }
+                }
+
+                Graphics.DrawText($"Visible UI Elements: {visibleUIElements}", new SharpDX.Vector2(100, 120));
+            }
+
+            /*Graphics.DrawText("Simple Trade is working", new SharpDX.Vector2(100, 100));
             Graphics.DrawText($"Invites Panel is visible: {GameController.IngameState.IngameUi.InvitesPanel.IsVisible}", new SharpDX.Vector2(100, 120));
             Graphics.DrawText($"Trade Window is visible: {GameController.IngameState.IngameUi.TradeWindow.IsVisible}", new SharpDX.Vector2(100, 140));
             Graphics.DrawText($"Trade Window is visible: {GameController.IngameState.IngameUi?.TradeWindow?.ChildCount}", new SharpDX.Vector2(100, 180));
@@ -255,7 +272,7 @@ namespace SimpleTrade
             //if (GameController.IngameState.IngameUi.TradeWindow.IsVisible)
             //{
                 Graphics.DrawText($"Trading with: {GameController.IngameState.IngameUi.TradeWindow.NameSeller}", new SharpDX.Vector2(100, 160));
-            //}
+            //}*/
         }
     }
 }
