@@ -246,7 +246,7 @@ namespace SimpleTrade
 
         public override void Render()
         {
-            IngameUIElements igu = GameController?.Game?.IngameState?.IngameUi;
+            /*IngameUIElements igu = GameController?.Game?.IngameState?.IngameUi;
             Element tradeWindow = igu.Children[35];
 
             int m = 0;
@@ -274,12 +274,12 @@ namespace SimpleTrade
                         m++;
                     }
                 }
-            }
+            }*/
 
             //tradewindow [35]
             //invitespanel [127]
 
-            /*
+            
             IngameUIElements igu = GameController?.Game?.IngameState?.IngameUi;
             string visibleUIElements = "";
 
@@ -306,7 +306,7 @@ namespace SimpleTrade
                     Graphics.DrawText($"Visible UI Elements: {visibleUIElements}", new SharpDX.Vector2(100, 120 + k * 20));
                 }
             }
-            */
+            
         }
     }
 }
