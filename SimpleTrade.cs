@@ -254,8 +254,9 @@ namespace SimpleTrade
             if (tradeWindow.IsVisible)
             {
                 Graphics.DrawText($"Trade Window visible, children count: {tradeWindow.Children.Count}", new SharpDX.Vector2(100, 160));
-                
-                for (int i = 0; i < tradeWindow.Children.Count; i++)
+                Graphics.DrawText($"Trade Window visible, children count: {tradeWindow.Children[0].Children.Count}", new SharpDX.Vector2(100, 180));
+
+                /*for (int i = 0; i < tradeWindow.Children.Count; i++)
                 {
                     Graphics.DrawText($"Child {i}, data: {tradeWindow.Children[i].LongText} + | + {tradeWindow.Children[i].Text}", new SharpDX.Vector2(100, 180 + m * 20));
                     m++;
@@ -287,7 +288,7 @@ namespace SimpleTrade
                         Graphics.DrawText($"Too Many Children", new SharpDX.Vector2(120, 180 + m * 20));
                         m++;
                     }
-                }
+                }*/
             }
 
             //tradewindow [102]
