@@ -251,23 +251,26 @@ namespace SimpleTrade
 
             //tradewindow [35]
             //
-
+            int i = 0;
             if (igu != null && igu.Children != null)
             {
-                for (int i = 0; i < igu.Children.Count; i++)
+                for (i = 0; i < igu.Children.Count; i++)
                 {
                     if (igu.Children[i].IsVisible)
                     {
                         visibleUIElements += $"{i} [{igu.Children[i].ChildCount}] ";
                         if (i % 10 == 0)
                         {
-                            Graphics.DrawText($"Visible UI Elements: {visibleUIElements}", new SharpDX.Vector2(100, 120 + i * 2));
+                            Graphics.DrawText($"Visible UI Elements: {visibleUIElements}", new SharpDX.Vector2(100, 120 + i / 10 * 20));
                             visibleUIElements = "";
                         }
                     }
                 }
 
-               // Graphics.DrawText($"Visible UI Elements: {visibleUIElements}", new SharpDX.Vector2(100, 120));
+                if (i % 10 != 0)
+                {
+                    Graphics.DrawText($"Visible UI Elements: {visibleUIElements}", new SharpDX.Vector2(100, 120 + i / 10 * 20));
+                }
             }
 
             /*Graphics.DrawText("Simple Trade is working", new SharpDX.Vector2(100, 100));
