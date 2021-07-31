@@ -255,7 +255,7 @@ namespace SimpleTrade
                 {
                     if (igu.Children[i].IsVisible)
                     {
-                        visibleUIElements += $"{igu.Children[i]} ";
+                        visibleUIElements += $"{i} ";
                     }
                 }
 
