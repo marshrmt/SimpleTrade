@@ -247,10 +247,19 @@ namespace SimpleTrade
         public override void Render()
         {
             IngameUIElements igu = GameController?.Game?.IngameState?.IngameUi;
-            string visibleUIElements = "";
+            TradeWindow tw = (TradeWindow) igu.Children[35];
+
+            if (tw.IsVisible)
+            {
+                Graphics.DrawText($"Trading with: {tw.NameSeller}", new SharpDX.Vector2(100, 160));
+            }
 
             //tradewindow [35]
             //invitespanel [127]
+
+            /*
+            IngameUIElements igu = GameController?.Game?.IngameState?.IngameUi;
+            string visibleUIElements = "";
 
             int i, k = 0, j = 0;
             if (igu != null && igu.Children != null)
@@ -275,22 +284,7 @@ namespace SimpleTrade
                     Graphics.DrawText($"Visible UI Elements: {visibleUIElements}", new SharpDX.Vector2(100, 120 + k * 20));
                 }
             }
-
-
-
-
-
-            /*Graphics.DrawText("Simple Trade is working", new SharpDX.Vector2(100, 100));
-            Graphics.DrawText($"Invites Panel is visible: {GameController.IngameState.IngameUi.InvitesPanel.IsVisible}", new SharpDX.Vector2(100, 120));
-            Graphics.DrawText($"Trade Window is visible: {GameController.IngameState.IngameUi.TradeWindow.IsVisible}", new SharpDX.Vector2(100, 140));
-            Graphics.DrawText($"Trade Window is visible: {GameController.IngameState.IngameUi?.TradeWindow?.ChildCount}", new SharpDX.Vector2(100, 180));
-            Graphics.DrawText($"Trade Window is visible: {GameController.IngameState.IngameUi?.InvitesPanel?.ChildCount}", new SharpDX.Vector2(100, 200));
-
-
-            //if (GameController.IngameState.IngameUi.TradeWindow.IsVisible)
-            //{
-                Graphics.DrawText($"Trading with: {GameController.IngameState.IngameUi.TradeWindow.NameSeller}", new SharpDX.Vector2(100, 160));
-            //}*/
+            */
         }
     }
 }
