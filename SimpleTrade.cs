@@ -247,11 +247,11 @@ namespace SimpleTrade
         public override void Render()
         {
             IngameUIElements igu = GameController?.Game?.IngameState?.IngameUi;
-            TradeWindow tw = (TradeWindow) igu.Children[35];
+            Element tradeWindow = igu.Children[35];
 
-            if (tw.IsVisible)
+            if (tradeWindow.IsVisible)
             {
-                Graphics.DrawText($"Trading with: {tw.NameSeller}", new SharpDX.Vector2(100, 160));
+                Graphics.DrawText($"Trade Window visible, child count: {tradeWindow.Children.Count}", new SharpDX.Vector2(100, 160));
             }
 
             //tradewindow [35]
