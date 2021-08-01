@@ -279,6 +279,9 @@ namespace SimpleTrade
                 if (invitesPanel.ChildCount == 1)
                 {
                     Graphics.DrawText($"child count: {invitesPanel.Children[0].ChildCount}", new SharpDX.Vector2(120, 160));
+
+                    InviteElement ie = GetInviteElement(invitesPanel.Children[0]);
+                    Graphics.DrawText($"{ie.accountName} {ie.characterName} {ie.inviteType}", new SharpDX.Vector2(100, 180));
                 }
             }
 
