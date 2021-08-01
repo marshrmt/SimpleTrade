@@ -120,8 +120,10 @@ namespace SimpleTrade
                         {
                             InviteElement invite = GetInviteElement(e);
 
+                            LogMessage(" >> before name check");
                             if (invite.inviteType == InviteType.Party && invite.characterName == Settings.AcceptPartyFrom.Value)
                             {
+                                LogMessage(" >> ++  name correct");
                                 Mouse.BlockInput(true);
 
                                 Mouse.SetCursorPosition(invite.acceptButtonClientRect);
