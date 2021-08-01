@@ -7,15 +7,15 @@ using SharpDX;
 using System.Threading;
 using System.Linq;
 using ExileCore.PoEMemory.MemoryObjects;
+using System.Collections;
+using ExileCore.Shared;
 
 namespace SimpleTrade
 {
 
     class SimpleTrade : BaseSettingsPlugin<SimpleTradeSettings>
     {
-
-        private static bool IsRunning { get; set; } = false;
-
+        
         private static float PrevInvitePos { get; set; } = 0;
 
         private static DateTime LastInvitePosChange { get; set; } = DateTime.Now;
@@ -24,14 +24,13 @@ namespace SimpleTrade
 
         public override Job Tick()
         {
-            if (IsRunning) return null;
+            var coroutineWorker = new Coroutine(CheckInvitesCoroutine(), this, "SimpleTrade.CheckInvitesCoroutine");
+            Core.ParallelRunner.Run(coroutineWorker);
 
-            IsRunning = true;
-
-            return new Job("SimpleTrade", Job);
+            return null;
         }
 
-        private void Job()
+        private IEnumerator CheckInvitesCoroutine()
         {
             try
             {
@@ -120,10 +119,8 @@ namespace SimpleTrade
                         {
                             InviteElement invite = GetInviteElement(e);
 
-                            LogMessage(" >> before name check");
                             if (invite.inviteType == InviteType.Party && invite.characterName == Settings.AcceptPartyFrom.Value)
                             {
-                                LogMessage(" >> ++  name correct");
                                 Mouse.BlockInput(true);
 
                                 Mouse.SetCursorPosition(invite.acceptButtonClientRect);
@@ -135,8 +132,7 @@ namespace SimpleTrade
 
                                 Thread.Sleep(500);
 
-                                IsRunning = false;
-                                return;
+                                yield break;
                             }
                             else if (invite.inviteType == InviteType.Trade && invite.characterName == Settings.AcceptTradeFrom.Value)
                             {
@@ -144,8 +140,7 @@ namespace SimpleTrade
 
                                 if (_playerInventory?.InventorySlotItems != null && _playerInventory.InventorySlotItems.Count <= 2)
                                 {
-                                    IsRunning = false;
-                                    return;
+                                    yield break;
                                 }
 
                                 Mouse.BlockInput(true);
@@ -159,8 +154,7 @@ namespace SimpleTrade
 
                                 Thread.Sleep(500);
 
-                                IsRunning = false;
-                                return;
+                                yield break;
                             }
                         }
                     }
@@ -168,18 +162,16 @@ namespace SimpleTrade
                 }
                 else
                 {
-                    IsRunning = false;
-                    return;
+                    yield break;
                 }
 
-                IsRunning = false;
-                return;
+                yield break;
             }
             catch
             {
                 Mouse.BlockInput(false);
                 Input.KeyUp(Keys.LControlKey);
-                IsRunning = false;
+                yield break;
             }
         }
 
@@ -263,7 +255,7 @@ namespace SimpleTrade
 
         public override void Render()
         {
-            TradeWindow tradeWindow = GameController?.Game?.IngameState?.IngameUi.TradeWindow;
+            /*TradeWindow tradeWindow = GameController?.Game?.IngameState?.IngameUi.TradeWindow;
             
             if (tradeWindow.IsVisible)
             {
@@ -285,7 +277,7 @@ namespace SimpleTrade
                     InviteElement ie = GetInviteElement(invitesPanel.Children[0]);
                     Graphics.DrawText($"{ie.accountName} {ie.characterName} {ie.inviteType}", new SharpDX.Vector2(100, 180));
                 }
-            }
+            }*/
 
             //tradewindow [102]
             //invitespanel [127]
