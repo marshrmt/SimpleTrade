@@ -259,7 +259,7 @@ namespace SimpleTrade
 
             if (invitesPanel.IsVisible)
             {
-                Graphics.DrawText($"Invites Panel is visible, child count: {invitesPanel.ChildCount}", new SharpDX.Vector2(100, 120));
+                Graphics.DrawText($"Invites Panel is visible, child count: {invitesPanel.ChildCount}", new SharpDX.Vector2(100, 140));
             }
 
             //tradewindow [102]
