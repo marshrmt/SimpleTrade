@@ -245,6 +245,21 @@ namespace SimpleTrade
 
         public override void Render()
         {
+            Element invitesPanel = GetInvitesPanel();
+
+            if (invitesPanel.IsVisible)
+            {
+                Graphics.DrawText($"Invites Panel is visible, child count: {invitesPanel.ChildCount}", new SharpDX.Vector2(100, 140));
+
+                if (invitesPanel.ChildCount == 1)
+                {
+                    Graphics.DrawText($"child count: {invitesPanel.Children[0].ChildCount}", new SharpDX.Vector2(120, 160));
+
+                    InviteElement ie = GetInviteElement(invitesPanel.Children[0]);
+                    Graphics.DrawText($"{ie.accountName} {ie.characterName} {ie.inviteType}", new SharpDX.Vector2(100, 180));
+                }
+            }
+
             /*TradeWindow tradeWindow = GameController?.Game?.IngameState?.IngameUi.TradeWindow;
             
             if (tradeWindow.IsVisible)
