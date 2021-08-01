@@ -22,6 +22,15 @@ namespace SimpleTrade
 
         private readonly Random random = new Random();
 
+        private Element invitesPanel;
+
+        public override bool Initialise()
+        {
+            invitesPanel = GetInvitesPanel();
+
+            return base.Initialise();
+        }
+
         public override Job Tick()
         {
             var coroutineWorker = new Coroutine(CheckInvitesCoroutine(), this, "SimpleTrade.CheckInvitesCoroutine");
@@ -95,9 +104,9 @@ namespace SimpleTrade
                         }
                     }
                 }
-                else if (GetInvitesPanel().IsVisible && GetInvitesPanel().ChildCount > 0)
+                else if (invitesPanel.IsVisible && invitesPanel.ChildCount > 0)
                 {
-                    foreach (var e in GetInvitesPanel().Children)
+                    foreach (var e in invitesPanel.Children)
                     {
                         if (e.Children.Count == 3)
                         {
@@ -115,7 +124,7 @@ namespace SimpleTrade
                     // Wait while invite panel scrolling up
                     if (LastInvitePosChange.AddMilliseconds(300) < DateTime.Now)
                     {
-                        foreach (var e in GetInvitesPanel().Children)
+                        foreach (var e in invitesPanel.Children)
                         {
                             InviteElement invite = GetInviteElement(e);
 
@@ -245,8 +254,6 @@ namespace SimpleTrade
 
         public override void Render()
         {
-            Element invitesPanel = GetInvitesPanel();
-
             if (invitesPanel.IsVisible)
             {
                 Graphics.DrawText($"Invites Panel is visible, child count: {invitesPanel.ChildCount}", new SharpDX.Vector2(100, 140));
@@ -268,9 +275,7 @@ namespace SimpleTrade
 
                 
             }
-
-            Element invitesPanel = GetInvitesPanel();
-
+            
             if (invitesPanel.IsVisible)
             {
                 Graphics.DrawText($"Invites Panel is visible, child count: {invitesPanel.ChildCount}", new SharpDX.Vector2(100, 140));
