@@ -241,7 +241,7 @@ namespace SimpleTrade
         private Element GetInvitesPanel()
         {
             //return GameController?.Game?.IngameState?.IngameUi?.GetChildAtIndex(127);
-            return GameController?.Game?.IngameState?.IngameUi?.InvitesPanel;
+            return GameController?.Game?.IngameState?.IngameUi?.GemLvlUpPanel;
         }
 
         public override void Render()
