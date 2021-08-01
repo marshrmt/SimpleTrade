@@ -96,9 +96,9 @@ namespace SimpleTrade
                         }
                     }
                 }
-                else if (GameController.IngameState.IngameUi.InvitesPanel.IsVisible && GameController.IngameState.IngameUi.InvitesPanel.ChildCount > 0)
+                else if (GetInvitesPanel().IsVisible && GetInvitesPanel().ChildCount > 0)
                 {
-                    foreach (var e in GameController.IngameState.IngameUi.InvitesPanel.Children)
+                    foreach (var e in GetInvitesPanel().Children)
                     {
                         if (e.Children.Count == 3)
                         {
@@ -116,7 +116,7 @@ namespace SimpleTrade
                     // Wait while invite panel scrolling up
                     if (LastInvitePosChange.AddMilliseconds(300) < DateTime.Now)
                     {
-                        foreach (var e in GameController.IngameState.IngameUi.InvitesPanel.Children)
+                        foreach (var e in GetInvitesPanel().Children)
                         {
                             InviteElement invite = GetInviteElement(e);
 
@@ -244,6 +244,21 @@ namespace SimpleTrade
             return new InviteElement(accountName, characterName, inviteType, acceptButtonRect);
         }
 
+        private Element GetInvitesPanel()
+        {
+            IngameUIElements igu = GameController?.Game?.IngameState?.IngameUi;
+            int idx = 127;
+
+            if (igu != null && igu.ChildCount >= idx)
+            {
+                return igu.Children[idx];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public override void Render()
         {
             TradeWindow tradeWindow = GameController?.Game?.IngameState?.IngameUi.TradeWindow;
@@ -255,7 +270,7 @@ namespace SimpleTrade
                 
             }
 
-            Element invitesPanel = GameController?.Game?.IngameState?.IngameUi.InvitesPanel;
+            Element invitesPanel = GetInvitesPanel();
 
             if (invitesPanel.IsVisible)
             {
