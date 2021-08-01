@@ -246,50 +246,13 @@ namespace SimpleTrade
 
         public override void Render()
         {
-            IngameUIElements igu = GameController?.Game?.IngameState?.IngameUi;
-            Element tradeWindow = igu.Children[102];
-
-            int m = 0;
-
+            TradeWindow tradeWindow = GameController?.Game?.IngameState?.IngameUi.TradeWindow;
+            
             if (tradeWindow.IsVisible)
             {
-                Graphics.DrawText($"Trade Window visible, children count: {tradeWindow.Children.Count}", new SharpDX.Vector2(100, 160));
-                Graphics.DrawText($"Trade Window visible, children count: {tradeWindow.Children[0].Children.Count}", new SharpDX.Vector2(100, 180));
-                Graphics.DrawText($"Trade Window visible, children count: {tradeWindow.Children[0].Children[0].Children.Count}", new SharpDX.Vector2(100, 180));
+                Graphics.DrawText($"Trade Window visible, name seller: {tradeWindow.NameSeller}", new SharpDX.Vector2(100, 120));
 
-                /*for (int i = 0; i < tradeWindow.Children.Count; i++)
-                {
-                    Graphics.DrawText($"Child {i}, data: {tradeWindow.Children[i].LongText} + | + {tradeWindow.Children[i].Text}", new SharpDX.Vector2(100, 180 + m * 20));
-                    m++;
-
-                    if (tradeWindow.Children[i].Children.Count < 7)
-                    {
-                        for (int j = 0; j < tradeWindow.Children[i].Children.Count; j++)
-                        {
-                            Graphics.DrawText($"Child {j}, data: {tradeWindow.Children[i].Children[j].LongText} + | + {tradeWindow.Children[i].Children[j].Text}", new SharpDX.Vector2(120, 180 + m * 20));
-                            m++;
-
-                            if (tradeWindow.Children[i].Children[j].Children.Count < 7)
-                            {
-                                for (int k = 0; k < tradeWindow.Children[i].Children[j].Children.Count; k++)
-                                {
-                                    Graphics.DrawText($"Child {k}, data: {tradeWindow.Children[i].Children[j].Children[k].LongText} + | + {tradeWindow.Children[i].Children[j].Children[k].Text}", new SharpDX.Vector2(140, 180 + m * 20));
-                                    m++;
-                                }
-                            }
-                            else
-                            {
-                                Graphics.DrawText($"Too Many Children", new SharpDX.Vector2(140, 180 + m * 20));
-                                m++;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Graphics.DrawText($"Too Many Children", new SharpDX.Vector2(120, 180 + m * 20));
-                        m++;
-                    }
-                }*/
+                
             }
 
             //tradewindow [102]
