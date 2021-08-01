@@ -251,7 +251,7 @@ namespace SimpleTrade
 
             if (igu != null && igu.ChildCount >= idx)
             {
-                return igu.Children[idx];
+                return igu.GetChildAtIndex(idx);
             }
             else
             {
