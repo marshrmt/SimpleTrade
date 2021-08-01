@@ -255,6 +255,13 @@ namespace SimpleTrade
                 
             }
 
+            Element invitesPanel = GameController?.Game?.IngameState?.IngameUi.InvitesPanel;
+
+            if (invitesPanel.IsVisible)
+            {
+                Graphics.DrawText($"Invites Panel is visible, child count: {invitesPanel.ChildCount}", new SharpDX.Vector2(100, 120));
+            }
+
             //tradewindow [102]
             //invitespanel [127]
 
