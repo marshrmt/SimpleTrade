@@ -51,6 +51,7 @@ namespace SimpleTrade
 
                         if (_playerInventory != null)
                         {
+                            Thread.Sleep(random.Next(450) + 65);
                             Mouse.BlockInput(true);
 
                             Input.KeyUp(Keys.LControlKey);
@@ -249,12 +250,13 @@ namespace SimpleTrade
 
         private Element GetInvitesPanel()
         {
-            return GameController?.Game?.IngameState?.IngameUi?.GetChildAtIndex(127);
+            //return GameController?.Game?.IngameState?.IngameUi?.GetChildAtIndex(127);
+            return GameController?.Game?.IngameState?.IngameUi?.InvitesPanel;
         }
 
         public override void Render()
         {
-            if (invitesPanel.IsVisible)
+            /*if (invitesPanel.IsVisible)
             {
                 Graphics.DrawText($"Invites Panel is visible, child count: {invitesPanel.ChildCount}", new SharpDX.Vector2(100, 140));
 
@@ -265,7 +267,7 @@ namespace SimpleTrade
                     InviteElement ie = GetInviteElement(invitesPanel.Children[0]);
                     Graphics.DrawText($"{ie.accountName} {ie.characterName} {ie.inviteType}", new SharpDX.Vector2(100, 180));
                 }
-            }
+            }*/
 
             /*TradeWindow tradeWindow = GameController?.Game?.IngameState?.IngameUi.TradeWindow;
             
