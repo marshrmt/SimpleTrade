@@ -29,8 +29,15 @@ namespace SimpleTrade
 
         public override Job Tick()
         {
-            var coroutineWorker = new Coroutine(CheckInvitesCoroutine(), this, "SimpleTrade.CheckInvitesCoroutine");
-            Core.ParallelRunner.Run(coroutineWorker);
+            try
+            {
+                var coroutineWorker = new Coroutine(CheckInvitesCoroutine(), this, "SimpleTrade.CheckInvitesCoroutine");
+                Core.ParallelRunner.Run(coroutineWorker);
+            }
+            catch
+            {
+                return null;
+            }
 
             return null;
         }
