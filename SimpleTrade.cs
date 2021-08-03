@@ -22,12 +22,8 @@ namespace SimpleTrade
 
         private readonly Random random = new Random();
 
-        private Element invitesPanel;
-
         public override bool Initialise()
         {
-            invitesPanel = GetInvitesPanel();
-
             return base.Initialise();
         }
 
@@ -105,9 +101,9 @@ namespace SimpleTrade
                         }
                     }
                 }
-                else if (invitesPanel.IsVisible && invitesPanel.ChildCount > 0)
+                else if (GetInvitesPanel().IsVisible && GetInvitesPanel().ChildCount > 0)
                 {
-                    foreach (var e in invitesPanel.Children)
+                    foreach (var e in GetInvitesPanel().Children)
                     {
                         if (e.Children.Count == 3)
                         {
@@ -125,7 +121,7 @@ namespace SimpleTrade
                     // Wait while invite panel scrolling up
                     if (LastInvitePosChange.AddMilliseconds(300) < DateTime.Now)
                     {
-                        foreach (var e in invitesPanel.Children)
+                        foreach (var e in GetInvitesPanel().Children)
                         {
                             InviteElement invite = GetInviteElement(e);
 
