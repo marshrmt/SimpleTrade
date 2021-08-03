@@ -250,8 +250,15 @@ namespace SimpleTrade
 
         private Element GetInvitesPanel()
         {
+            IngameUIElements igu = GameController?.Game?.IngameState?.IngameUi;
+            if (igu != null)
+            {
+                return igu.ReadObjectAt<Element>(0xA20);
+            }
+
+            return null;
             //return GameController?.Game?.IngameState?.IngameUi?.GetChildAtIndex(127);
-            return GameController?.Game?.IngameState?.IngameUi?.InvitesPanel;
+            
         }
 
         public override void Render()
