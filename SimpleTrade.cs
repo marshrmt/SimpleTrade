@@ -47,7 +47,7 @@ namespace SimpleTrade
 
                         if (_playerInventory != null)
                         {
-                            Thread.Sleep(random.Next(450) + 65);
+                            Thread.Sleep(random.Next(150) + 65);
                             Mouse.BlockInput(true);
 
                             Input.KeyUp(Keys.LControlKey);
