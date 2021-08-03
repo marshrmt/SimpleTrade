@@ -29,10 +29,11 @@ namespace SimpleTrade
 
         public override Job Tick()
         {
-            try
-            {
-                var coroutineWorker = new Coroutine(CheckInvitesCoroutine(), this, "SimpleTrade.CheckInvitesCoroutine");
-                Core.ParallelRunner.Run(coroutineWorker);
+            try {
+                if (GameController.IngameState.IngameUi.TradeWindow.IsVisible || (GetInvitesPanel().IsVisible && GetInvitesPanel().ChildCount > 0)) {
+                    var coroutineWorker = new Coroutine(CheckInvitesCoroutine(), this, "SimpleTrade.CheckInvitesCoroutine");
+                    Core.ParallelRunner.Run(coroutineWorker);
+                }
             }
             catch
             {
