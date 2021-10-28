@@ -257,7 +257,7 @@ namespace SimpleTrade
             IngameUIElements igu = GameController?.Game?.IngameState?.IngameUi;
             if (igu != null)
             {
-                return igu.ReadObjectAt<Element>(0xA20);
+                return igu.ReadObjectAt<Element>(0xA98);
             }
 
             return null;
